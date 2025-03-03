@@ -34,7 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import cmp_bookpedia.composeapp.generated.resources.Res
 import cmp_bookpedia.composeapp.generated.resources.favorites
-import cmp_bookpedia.composeapp.generated.resources.no_favorites
+import cmp_bookpedia.composeapp.generated.resources.no_favorite_books
 import cmp_bookpedia.composeapp.generated.resources.no_search_results
 import cmp_bookpedia.composeapp.generated.resources.search_results
 import com.plcoding.bookpedia.book.domain.Book
@@ -220,7 +220,7 @@ private fun BookListScreen(
                                 when {
                                     state.favoriteBooks.isEmpty() -> {
                                         Text(
-                                            text = stringResource(Res.string.no_favorites),
+                                            text = stringResource(Res.string.no_favorite_books),
                                             textAlign = TextAlign.Center,
                                             style = MaterialTheme.typography.headlineSmall,
                                         )
