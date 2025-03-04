@@ -18,7 +18,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.toRoute
 import com.plcoding.bookpedia.book.presentation.SelectedBookViewModel
 import com.plcoding.bookpedia.book.presentation.book_list.BookListScreenRoot
 import com.plcoding.bookpedia.book.presentation.book_list.BookListViewModel
@@ -39,7 +38,8 @@ fun App() {
             ) {
                 composable<Route.BookList> {
                     val viewModel = koinViewModel<BookListViewModel>()
-                    val selectedBookViewModel = it.sharedKoinViewModel<SelectedBookViewModel>(navController)
+                    val selectedBookViewModel =
+                        it.sharedKoinViewModel<SelectedBookViewModel>(navController)
 
                     LaunchedEffect(true) {
                         selectedBookViewModel.onSelectBook(null)
@@ -54,8 +54,10 @@ fun App() {
                         }
                     )
                 }
+                // TODO: At timestamp 3:20
                 composable<Route.BookDetail> {
-                    val selectedBookViewModel = it.sharedKoinViewModel<SelectedBookViewModel>(navController)
+                    val selectedBookViewModel =
+                        it.sharedKoinViewModel<SelectedBookViewModel>(navController)
                     val selectedBook by selectedBookViewModel.selectedBook.collectAsStateWithLifecycle()
 
                     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -69,7 +71,7 @@ fun App() {
 }
 
 @Composable
-private inline fun <reified T: ViewModel> NavBackStackEntry.sharedKoinViewModel(
+private inline fun <reified T : ViewModel> NavBackStackEntry.sharedKoinViewModel(
     navController: NavController
 ): T {
     val navGraphRoute = destination.parent?.route ?: return koinViewModel<T>()
